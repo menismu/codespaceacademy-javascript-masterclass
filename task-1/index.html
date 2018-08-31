@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+    <head>
+        <title>Code Space Academy - App</title>
+        <link rel="stylesheet" href="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    </head>
+
+    <body ng-controller="demoController">
+            <div ng-app="myApp" class="container-fluid">
+                    <div class="row">
+                      <div class="col-xs-12">
+                        <h2 class="page-header">Cool! App</h2>
+                        <div class="row">
+                            <div class="bs-callout bs-callout-info">
+                              <h4>Descripci&oacute;n</h4>
+                              <p>Filtra y ordena datos de una forma r&aacute;pida y c&oacute;moda con nuestra app</p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="bs-callout bs-callout-warning">
+                              <h4>Datos y datos</h4>
+                              <p>Nuestros clientes hacen un uso extensivo de datos y sus usuarios necesitan de soluciones capaces de dar un filtrado y ordenaci&oacute;n r&aacute;pido, que les ayude a su mejorar su productividad</p>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6" ng-controller="demoController as demo">
+                        <h3>Datos cargados</h3>
+                        <table ng-table="demo.tableParams" class="table table-bordered table-hover table-condensed editable-table demoTable" ng-form="demo.tableForm" disable-filter="demo.isAdding" demo-tracked-table="demo.tableTracker">
+                          <colgroup>
+                            <col width="65%" />
+                            <col width="10%" />
+                            <col width="10%" />
+                            <col width="15%" />
+                          </colgroup>
+                          <tr ng-repeat="row in $data" ng-form="rowForm" demo-tracked-table-row="row">
+                            <td title="'Name'" filter="{name: 'text'}" sortable="'name'" ng-switch="row.isEditing" ng-class="name.$dirty ? 'bg-warning' : ''" ng-form="name" demo-tracked-table-cell>
+                              <span ng-switch-default class="editable-text">{{row.name}}</span>
+                              <div class="controls" ng-class="name.$invalid && name.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                                <input type="text" name="name" ng-model="row.name" class="editable-input form-control input-sm" required />
+                              </div>
+                            </td>
+                            <td title="'Age'" filter="{age: 'number'}" sortable="'age'" ng-switch="row.isEditing" ng-class="age.$dirty ? 'bg-warning' : ''" ng-form="age" demo-tracked-table-cell>
+                              <span ng-switch-default class="editable-text">{{row.age}}</span>
+                              <div class="controls" ng-class="age.$invalid && age.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                                <input type="number" name="age" ng-model="row.age" class="editable-input form-control input-sm" required/>
+                              </div>
+                            </td>
+                            <td title="'Money'" filter="{money: 'number'}" sortable="'money'" ng-switch="row.isEditing" ng-class="money.$dirty ? 'bg-warning' : ''" ng-form="money" demo-tracked-table-cell>
+                              <span ng-switch-default class="editable-text">{{row.money}}</span>
+                              <div class="controls" ng-class="money.$invalid && money.$dirty ? 'has-error' : ''" ng-switch-when="true">
+                                <input type="number" name="money" ng-model="row.money" class="editable-input form-control input-sm" required/>
+                              </div>
+                            </td>
+                            <td>
+                              <button class="btn btn-primary btn-sm" ng-click="demo.save(row, rowForm)" ng-if="row.isEditing" ng-disabled="rowForm.$pristine || rowForm.$invalid"><span class="glyphicon glyphicon-ok"></span></button>
+                              <button class="btn btn-default btn-sm" ng-click="demo.cancel(row, rowForm)" ng-if="row.isEditing"><span class="glyphicon glyphicon-remove"></span></button>
+                              <button class="btn btn-default btn-sm" ng-click="row.isEditing = true" ng-if="!row.isEditing"><span class="glyphicon glyphicon-pencil"></span></button>
+                              <button class="btn btn-danger btn-sm" ng-click="demo.del(row)" ng-if="!row.isEditing"><span class="glyphicon glyphicon-trash"></span></button>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+    </body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.2/angular.js"></script>
+    <script src="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
+    <script src="js/data-provider.js"></script>
+    <script src="js/app.js"></script>
+</html>
