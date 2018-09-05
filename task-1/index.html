@@ -28,6 +28,11 @@
                     <div class="row">
                       <div class="col-md-6" ng-controller="demoController as demo">
                         <h3>Datos cargados</h3>
+                        <div class="col-md-12">
+                          <div class="col-md-8"></div>
+                          <div class="col-md-2"><button class="btn btn-primary btn-sm" ng-click="demo.clearFilter()">Borrar filtrado</button></div>
+                          <div class="col-md-2"><button class="btn btn-primary btn-sm" ng-click="demo.clearSort()">Borar ordenado</button></div>
+                        </div>
                         <table ng-table="demo.tableParams" class="table table-bordered table-hover table-condensed editable-table demoTable" ng-form="demo.tableForm" disable-filter="demo.isAdding" demo-tracked-table="demo.tableTracker">
                           <colgroup>
                             <col width="65%" />

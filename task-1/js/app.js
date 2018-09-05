@@ -19,6 +19,8 @@ angular.module("myApp", ["ngTable", "ngTableDemos"]);
     self.cancel = cancel;
     self.del = del;
     self.save = save;
+    self.clearFilter = clearFilter;
+    self.clearSort = clearSort;
 
     //////////
 
@@ -51,6 +53,14 @@ angular.module("myApp", ["ngTable", "ngTableDemos"]);
     function save(row, rowForm) {
       var originalRow = resetRow(row, rowForm);
       angular.extend(originalRow, row);
+    }
+
+    function clearFilter() {
+      self.tableParams.filter({});
+    }
+
+    function clearSort() {
+      self.tableParams.sorting({});
     }
   }
 })();
